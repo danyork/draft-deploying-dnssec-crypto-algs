@@ -3,7 +3,9 @@ new cryptographic algorithms within DNSSEC.  The latest submitted version
 can be found at:
 
 https://datatracker.ietf.org/doc/draft-york-dnsop-deploying-dnssec-crypto-algs/
+
 or
+
 https://tools.ietf.org/html/draft-york-dnsop-deploying-dnssec-crypto-algs
 
 This repo contains the most recent version of the text, which may be newer than

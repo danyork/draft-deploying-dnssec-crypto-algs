@@ -15,10 +15,20 @@ author:
     org: Internet Society
     email: york@isoc.org
  -
-    in: O. Sury
-    name: ONdrej Sury
+    ins: O. Sury
+    name: Ondrej Sury
     org: CZ.NIC
     email: ondrej.sury@nic.cz
+ -
+    ins: P. Wouters
+    name: Paul Wouters
+    org: Red Hat
+    email: pwouters@redhat.com
+ -
+    ins: O. Gudmundsson
+    name: Olafur Gudmundsson
+    org: CloudFlare
+    email: olafur+ietf@cloudflare.com
 
 normative:
   RFC2119:
@@ -252,7 +262,7 @@ library.
 
 [MOVE THIS TO BE SUBSECTION OF RECURSIVE RESOLVERS ABOVE?]
 
-[NOTE(OS): The note about libraris applies to both Signers and
+[NOTE(OS): The note about libraries applies to both Signers and
 Resolvers sections.]
 
 # Conclusion

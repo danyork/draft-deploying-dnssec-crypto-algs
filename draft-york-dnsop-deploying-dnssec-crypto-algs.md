@@ -2,7 +2,7 @@
 title: Observations on Deploying New DNSSEC Cryptographic Algorithms 
 abbrev: I-D
 docname: draft-york-dnsop-deploying-dnssec-crypto-algs-00
-date: 2016-03-17
+date: 2016-03-21
 category: info
 ipr: trust200902
 wg: DNSOP Working Group

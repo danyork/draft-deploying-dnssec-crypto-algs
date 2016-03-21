@@ -14,6 +14,11 @@ author:
     name: Dan York
     org: Internet Society
     email: york@isoc.org
+ -
+    in: O. Sury
+    name: ONdrej Sury
+    org: CZ.NIC
+    email: ondrej.sury@nic.cz
 
 normative:
   RFC2119:
@@ -127,22 +132,29 @@ have any mechanism for automatic updating.
 
 It should be noted that section 5.2 of {{?RFC4035}} states:
 
-
 “If the resolver does not support any of the algorithms listed 
 in an authenticated DS RRset, then the resolver will not be 
 able to verify the authentication path to the child zone. 
 In this case, the resolver SHOULD treat the child zone as 
 if it were unsigned.”
 
-
 This means that signing a zone with a new algorithm that is 
 not widely supported by DNS resolvers would result in the 
 signatures being ignored and the zone treated as unsigned
 until resolvers were updated to recognize the new algorithm.
 
-## Authoritative DNS Servers
+##
 
-Authoritative DNS servers server out signed DNS records.
+Authoritative DNS server serve out signed DNS records.  Serving new
+DNSSEC signing algorithms shouldn't be a problem, as a well-written
+authoritative DNS server implementation should be agnostic to the RR
+DATA they serve.
+
+NOTE(OS): Do we also address new NSEC/NSEC3 hashing algorithms?
+Because that would require update in the authoritative DNS server.
+
+## Signers
+
 The software performing the signing of the records needs to
 be updated with the new cryptographic algorithm.
 
@@ -154,6 +166,10 @@ Note that the key and signatures with the new algorithm will
 need to co-exist with the existing key and signatures for 
 some period of time, which would have some impact on the size
 of the DNS records.
+
+NOTE(OS): Shouldn't we just update the language that requires the
+resolver to be so strict and finally be done with this requirement?
+Or just give a recommendation in the paragraph on resolver here?
 
 ## Registries
 
@@ -235,6 +251,9 @@ it takes the application developer to pull in the updated
 library.
 
 [MOVE THIS TO BE SUBSECTION OF RECURSIVE RESOLVERS ABOVE?]
+
+[NOTE(OS): The note about libraris applies to both Signers and
+Resolvers sections.]
 
 # Conclusion
 

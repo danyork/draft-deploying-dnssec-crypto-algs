@@ -143,7 +143,7 @@ not widely supported by DNS resolvers would result in the
 signatures being ignored and the zone treated as unsigned
 until resolvers were updated to recognize the new algorithm.
 
-##
+## Authoritative DNS Servers
 
 Authoritative DNS server serve out signed DNS records.  Serving new
 DNSSEC signing algorithms shouldn't be a problem, as a well-written

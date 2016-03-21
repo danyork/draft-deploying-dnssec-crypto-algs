@@ -109,7 +109,9 @@ following aspects of the DNS infrastructure must be updated:
 
 * DNS resolvers performing validation
 
-* Authoritative DNS servers performing DNSSEC signing
+* Authoritative DNS servers
+
+* Signing software
 
 * Registries
 
@@ -155,15 +157,17 @@ until resolvers were updated to recognize the new algorithm.
 
 ## Authoritative DNS Servers
 
-Authoritative DNS server serve out signed DNS records.  Serving new
-DNSSEC signing algorithms shouldn't be a problem, as a well-written
+Authoritative DNS servers serve out signed DNS records.  Serving new
+DNSSEC signing algorithms should not be a problem as a well-written
 authoritative DNS server implementation should be agnostic to the RR
-DATA they serve.
+DATA they serve.  Note that some authoritative server implementations 
+could include DNSSEC signing as part of the server and thus also fall 
+into the "Signing Software" category below.
 
-NOTE(OS): Do we also address new NSEC/NSEC3 hashing algorithms?
-Because that would require update in the authoritative DNS server.
+[NOTE(OS): Do we also address new NSEC/NSEC3 hashing algorithms?
+Because that would require update in the authoritative DNS server.]
 
-## Signers
+## Signing Software
 
 The software performing the signing of the records needs to
 be updated with the new cryptographic algorithm.
@@ -175,11 +179,15 @@ reflect the existence of the new algorithm.
 Note that the key and signatures with the new algorithm will
 need to co-exist with the existing key and signatures for 
 some period of time, which would have some impact on the size
-of the DNS records.
+of the DNS records. 
 
-NOTE(OS): Shouldn't we just update the language that requires the
+[NOTE(OS): Shouldn't we just update the language that requires the
 resolver to be so strict and finally be done with this requirement?
-Or just give a recommendation in the paragraph on resolver here?
+Or just give a recommendation in the paragraph on resolver here?]
+
+[NOTE(DY): I just noticed that "Signing software" or "Signers"
+does not exist in the "DNS Terminology draft at
+https://tools.ietf.org/html/rfc7719 ]
 
 ## Registries
 
@@ -230,6 +238,11 @@ verification, the registrar's software needs to understand
 the algorithm used in the DS record.  This requires the 
 software to be updated to support the new algorithm.
 
+Note that work is currently underway in {{?I-D.ietf-dnsop-maintain-ds}}
+to provide an automated mechanism to update the DS records
+with a registry.  If this method becomes widely adopted, 
+registrar web interfaces will no longer be needed.
+
 ## DNS Hosting Operators
 
 DNS hosting operators are entities that are operating the 
@@ -260,10 +273,8 @@ needs to be updated first. It will then depend upon how long
 it takes the application developer to pull in the updated 
 library.
 
-[MOVE THIS TO BE SUBSECTION OF RECURSIVE RESOLVERS ABOVE?]
-
-[NOTE(OS): The note about libraries applies to both Signers and
-Resolvers sections.]
+Outside of applications, these developer libraries are also 
+typically used by recursive resolver software and signing software.
 
 # Conclusion
 
@@ -281,6 +292,10 @@ This document does not make any requests of IANA.
 # Security Considerations
 
 No new security considerations are created by this document.
+
+It should be noted that there are security considerations regarding
+changing DNSSEC algorithms that are mentioned in both {{?RFC6781}}
+and {{?RFC7583}}.
 
 # Acknowledgements
 

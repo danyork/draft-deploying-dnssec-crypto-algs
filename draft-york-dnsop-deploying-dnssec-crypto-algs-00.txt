@@ -4,8 +4,13 @@
 
 DNSOP Working Group                                              D. York
 Internet-Draft                                          Internet Society
-Intended status: Informational                            March 17, 2016
-Expires: September 18, 2016
+Intended status: Informational                                   O. Sury
+Expires: September 18, 2016                                       CZ.NIC
+                                                              P. Wouters
+                                                                 Red Hat
+                                                          O. Gudmundsson
+                                                              CloudFlare
+                                                          March 17, 2016
 
 
      Observations on Deploying New DNSSEC Cryptographic Algorithms
@@ -45,18 +50,19 @@ Copyright Notice
    Provisions Relating to IETF Documents
    (http://trustee.ietf.org/license-info) in effect on the date of
    publication of this document.  Please review these documents
+
+
+
+York, et al.           Expires September 18, 2016               [Page 1]
+
+Internet-Draft                     I-D                        March 2016
+
+
    carefully, as they describe your rights and restrictions with respect
    to this document.  Code Components extracted from this document must
    include Simplified BSD License text as described in Section 4.e of
    the Trust Legal Provisions and are provided without warranty as
    described in the Simplified BSD License.
-
-
-
-York                   Expires September 18, 2016               [Page 1]
-
-Internet-Draft                     I-D                        March 2016
-
 
 1.  Introduction
 
@@ -98,6 +104,16 @@ Internet-Draft                     I-D                        March 2016
    aspects of the DNS infrastructure that interact with DNSSEC must be
    updated to use the new algorithm.
 
+
+
+
+
+
+York, et al.           Expires September 18, 2016               [Page 2]
+
+Internet-Draft                     I-D                        March 2016
+
+
    This document outlines the current understanding of the components of
    the DNS infrastructure that need to be updated to deploy a new
    cryptographic algorithm.
@@ -106,13 +122,6 @@ Internet-Draft                     I-D                        March 2016
    deployment.  The IAB documented "Guidelines for Cryptographic
    Algorithm Agility" in [RFC7696] to highlight the importance of this
    issue.
-
-
-
-York                   Expires September 18, 2016               [Page 2]
-
-Internet-Draft                     I-D                        March 2016
-
 
 1.1.  Terminology
 
@@ -128,7 +137,9 @@ Internet-Draft                     I-D                        March 2016
 
    o  DNS resolvers performing validation
 
-   o  Authoritative DNS servers performing DNSSEC signing
+   o  Authoritative DNS servers
+
+   o  Signing software
 
    o  Registries
 
@@ -151,6 +162,14 @@ Internet-Draft                     I-D                        March 2016
    updated.  In some cases this could require waiting until an
    underlying library is updated to support the new algorithm.
 
+
+
+
+York, et al.           Expires September 18, 2016               [Page 3]
+
+Internet-Draft                     I-D                        March 2016
+
+
    Once the software is updated, the updates need to be deployed to all
    resolvers using that software.  This can be challenging in cases of
    customer-premises equipment (CPE) that does not have any mechanism
@@ -162,14 +181,6 @@ Internet-Draft                     I-D                        March 2016
 
    "If the resolver does not support any of the algorithms listed in an
    authenticated DS RRset, then the resolver will not be able to verify
-
-
-
-York                   Expires September 18, 2016               [Page 3]
-
-Internet-Draft                     I-D                        March 2016
-
-
    the authentication path to the child zone.  In this case, the
    resolver SHOULD treat the child zone as if it were unsigned."
 
@@ -180,9 +191,20 @@ Internet-Draft                     I-D                        March 2016
 
 2.2.  Authoritative DNS Servers
 
-   Authoritative DNS servers server out signed DNS records.  The
-   software performing the signing of the records needs to be updated
-   with the new cryptographic algorithm.
+   Authoritative DNS servers serve out signed DNS records.  Serving new
+   DNSSEC signing algorithms should not be a problem as a well-written
+   authoritative DNS server implementation should be agnostic to the RR
+   DATA they serve.  Note that some authoritative server implementations
+   could include DNSSEC signing as part of the server and thus also fall
+   into the "Signing Software" category below.
+
+   [NOTE(OS): Do we also address new NSEC/NSEC3 hashing algorithms?
+   Because that would require update in the authoritative DNS server.]
+
+2.3.  Signing Software
+
+   The software performing the signing of the records needs to be
+   updated with the new cryptographic algorithm.
 
    User interfaces that allow users to interact with the DNSSEC signing
    software may also need to be updated to reflect the existence of the
@@ -192,7 +214,23 @@ Internet-Draft                     I-D                        March 2016
    co-exist with the existing key and signatures for some period of
    time, which would have some impact on the size of the DNS records.
 
-2.3.  Registries
+   [NOTE(OS): Shouldn't we just update the language that requires the
+   resolver to be so strict and finally be done with this requirement?
+   Or just give a recommendation in the paragraph on resolver here?]
+
+
+
+
+York, et al.           Expires September 18, 2016               [Page 4]
+
+Internet-Draft                     I-D                        March 2016
+
+
+   [NOTE(DY): I just noticed that "Signing software" or "Signers" does
+   not exist in the "DNS Terminology draft at
+   https://tools.ietf.org/html/rfc7719 ]
+
+2.4.  Registries
 
    The registry for a top-level domain (TLD) needs to accept DS records
    using the new cryptographic algorithm.
@@ -211,20 +249,12 @@ Internet-Draft                     I-D                        March 2016
    currently have any mechanism to understand what DNSSEC algorithms a
    registry can accept.
 
-2.4.  Registrars
+2.5.  Registrars
 
    Registrars perform a critical role in the DNSSEC "chain of trust" of
    passing the DS record up to the Registry to ensure that the signed
    zone can be authenticated from the root of DNS all the way to the
    zone.
-
-
-
-
-York                   Expires September 18, 2016               [Page 4]
-
-Internet-Draft                     I-D                        March 2016
-
 
    If the registrar is also providing the DNS hosting services for a
    domain, the registrar can easily create the "DS" record from the
@@ -244,10 +274,23 @@ Internet-Draft                     I-D                        March 2016
    perform some level of verification on the DS record to ensure it was
    entered "correctly".  To do this verification, the registrar's
    software needs to understand the algorithm used in the DS record.
+
+
+
+York, et al.           Expires September 18, 2016               [Page 5]
+
+Internet-Draft                     I-D                        March 2016
+
+
    This requires the software to be updated to support the new
    algorithm.
 
-2.5.  DNS Hosting Operators
+   Note that work is currently underway in [I-D.ietf-dnsop-maintain-ds]
+   to provide an automated mechanism to update the DS records with a
+   registry.  If this method becomes widely adopted, registrar web
+   interfaces will no longer be needed.
+
+2.6.  DNS Hosting Operators
 
    DNS hosting operators are entities that are operating the
    authoritative DNS servers for domains and with DNSSEC are also
@@ -260,7 +303,7 @@ Internet-Draft                     I-D                        March 2016
    need to update their web interfaces and provisioning software to
    allow configuration and support of new algorithms.
 
-2.6.  Applications
+2.7.  Applications
 
    Beyond the recursive resolvers, authoritative servers, web interfaces
    and provisioning software, it has been observed that some
@@ -275,14 +318,8 @@ Internet-Draft                     I-D                        March 2016
    to be updated first.  It will then depend upon how long it takes the
    application developer to pull in the updated library.
 
-
-
-York                   Expires September 18, 2016               [Page 5]
-
-Internet-Draft                     I-D                        March 2016
-
-
-   [MOVE THIS TO BE SUBSECTION OF RECURSIVE RESOLVERS ABOVE?]
+   Outside of applications, these developer libraries are also typically
+   used by recursive resolver software and signing software.
 
 3.  Conclusion
 
@@ -292,6 +329,15 @@ Internet-Draft                     I-D                        March 2016
    algorithms, these steps must be understood and hopefully improved
    over time.
 
+
+
+
+
+York, et al.           Expires September 18, 2016               [Page 6]
+
+Internet-Draft                     I-D                        March 2016
+
+
 4.  IANA Considerations
 
    This document does not make any requests of IANA.
@@ -299,6 +345,10 @@ Internet-Draft                     I-D                        March 2016
 5.  Security Considerations
 
    No new security considerations are created by this document.
+
+   It should be noted that there are security considerations regarding
+   changing DNSSEC algorithms that are mentioned in both [RFC6781] and
+   [RFC7583].
 
 6.  Acknowledgements
 
@@ -331,16 +381,18 @@ Internet-Draft                     I-D                        March 2016
               Extensions", RFC 4035, DOI 10.17487/RFC4035, March 2005,
               <http://www.rfc-editor.org/info/rfc4035>.
 
-
-
-York                   Expires September 18, 2016               [Page 6]
-
-Internet-Draft                     I-D                        March 2016
-
-
    [RFC6014]  Hoffman, P., "Cryptographic Algorithm Identifier
               Allocation for DNSSEC", RFC 6014, DOI 10.17487/RFC6014,
               November 2010, <http://www.rfc-editor.org/info/rfc6014>.
+
+
+
+
+
+York, et al.           Expires September 18, 2016               [Page 7]
+
+Internet-Draft                     I-D                        March 2016
+
 
    [RFC6944]  Rose, S., "Applicability Statement: DNS Security (DNSSEC)
               DNSKEY Algorithm Implementation Status", RFC 6944, DOI
@@ -370,7 +422,33 @@ Internet-Draft                     I-D                        March 2016
               BCP 201, RFC 7696, DOI 10.17487/RFC7696, November 2015,
               <http://www.rfc-editor.org/info/rfc7696>.
 
-Author's Address
+   [I-D.ietf-dnsop-maintain-ds]
+              Gu[eth]mundsson, O. and P. Wouters, "Managing DS records
+              from parent via CDS/CDNSKEY", draft-ietf-dnsop-maintain-
+              ds-01 (work in progress), March 2016.
+
+   [RFC6781]  Kolkman, O., Mekking, W., and R. Gieben, "DNSSEC
+              Operational Practices, Version 2", RFC 6781, DOI 10.17487/
+              RFC6781, December 2012,
+              <http://www.rfc-editor.org/info/rfc6781>.
+
+   [RFC7583]  Morris, S., Ihren, J., Dickinson, J., and W. Mekking,
+              "DNSSEC Key Rollover Timing Considerations", RFC 7583, DOI
+              10.17487/RFC7583, October 2015,
+              <http://www.rfc-editor.org/info/rfc7583>.
+
+Authors' Addresses
+
+
+
+
+
+
+
+York, et al.           Expires September 18, 2016               [Page 8]
+
+Internet-Draft                     I-D                        March 2016
+
 
    Dan York
    Internet Society
@@ -378,6 +456,22 @@ Author's Address
    Email: york@isoc.org
 
 
+   Ondrej Sury
+   CZ.NIC
+
+   Email: ondrej.sury@nic.cz
+
+
+   Paul Wouters
+   Red Hat
+
+   Email: pwouters@redhat.com
+
+
+   Olafur Gudmundsson
+   CloudFlare
+
+   Email: olafur+ietf@cloudflare.com
 
 
 
@@ -389,4 +483,22 @@ Author's Address
 
 
 
-York                   Expires September 18, 2016               [Page 7]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+York, et al.           Expires September 18, 2016               [Page 9]

@@ -98,13 +98,13 @@ Internet-Draft                     I-D                         July 2016
    o  Usage in a Delegation Signer ("DS") record [RFC3658] for the
       "chain of trust" connecting back to the root of DNS
 
+   o  Generation of NSEC/NSEC3 responses by authoritative DNS servers
+
    o  Validation of DNSSEC signatures by DNS resolvers
 
    In order for a new cryptographic algorithm to be fully deployed, all
    aspects of the DNS infrastructure that interact with DNSSEC must be
    updated to use the new algorithm.
-
-
 
 
 
@@ -216,7 +216,7 @@ Internet-Draft                     I-D                         July 2016
 
    Note that the key and signatures with the new algorithm will need to
    co-exist with the existing key and signatures for some period of
-   time, which would have some impact on the size of the DNS records.
+   time.  This will have an impact on the size of the DNS records.
 
 
 
@@ -229,6 +229,12 @@ Internet-Draft                     I-D                         July 2016
    [NOTE(OS): Shouldn't we just update the language that requires the
    resolver to be so strict and finally be done with this requirement?
    Or just give a recommendation in the paragraph on resolver here?]
+
+   One issue that has been identified is that at least one of the
+   commonly-used signing software releases does not include any support
+   for doing an algorithm roll.  This software would need to be updated
+   to support rolling an algorithm before any new algorithms could be
+   deployed.
 
 2.4.  Registries
 
@@ -267,13 +273,7 @@ Internet-Draft                     I-D                         July 2016
 
    An issue is that many registrar web interfaces only allow the input
    of DS records using a listed set of DNSSEC algorithms.  Any new
-   cryptographic algorithms need to be added to the web interface in
-   order to be accepted into the registrar's system.
 
-   Additionally, in a manner similar to registries, many registrars
-   perform some level of verification on the DS record to ensure it was
-   entered "correctly".  To do this verification, the registrar's
-   software needs to understand the algorithm used in the DS record.
 
 
 
@@ -282,6 +282,13 @@ York, et al.             Expires January 7, 2017                [Page 5]
 Internet-Draft                     I-D                         July 2016
 
 
+   cryptographic algorithms need to be added to the web interface in
+   order to be accepted into the registrar's system.
+
+   Additionally, in a manner similar to registries, many registrars
+   perform some level of verification on the DS record to ensure it was
+   entered "correctly".  To do this verification, the registrar's
+   software needs to understand the algorithm used in the DS record.
    This requires the software to be updated to support the new
    algorithm.
 
@@ -321,13 +328,6 @@ Internet-Draft                     I-D                         July 2016
    Outside of applications, these developer libraries are also typically
    used by recursive resolver software and signing software.
 
-3.  Conclusion
-
-   This document provides a view into the steps necessary for the
-   deployment of new cryptographic algorithms in DNSSEC at the time of
-   this publication.  In order to more rapidly roll out new DNSSEC
-   algorithms, these steps must be understood and hopefully improved
-   over time.
 
 
 
@@ -337,6 +337,29 @@ York, et al.             Expires January 7, 2017                [Page 6]
 
 Internet-Draft                     I-D                         July 2016
 
+
+3.  Conclusion
+
+   This document provides a view into the steps necessary for the
+   deployment of new cryptographic algorithms in DNSSEC at the time of
+   this publication.  In order to more rapidly roll out new DNSSEC
+   algorithms, these steps must be understood and hopefully improved
+   over time.
+
+   It should be noted that a common theme to emerge from all discussions
+   is a general reluctance to update or change any DNS-related software.
+   "If it isn't broken, don't fix it" is a common refrain.  While
+   perhaps understandable from a stability point of view, this attitude
+   creates a challenge for deploying new algorithms.
+
+   One potential idea suggested during discussions was for some kind of
+   web-based testing tool that could assist people in understanding what
+   algorithms are supported by different servers and sites.
+
+   It is also quite clear that any deployment of new algorithms for
+   DNSSEC use will take a few years to propagate throughout the
+   infrastructure.  This needs to be factored in as new algorithms are
+   proposed.
 
 4.  IANA Considerations
 
@@ -364,6 +387,13 @@ Internet-Draft                     I-D                         July 2016
 
    o  various IETF 95 working groups (Buenos Aires)
 
+
+
+York, et al.             Expires January 7, 2017                [Page 7]
+
+Internet-Draft                     I-D                         July 2016
+
+
    o  Panel session at RIPE 72 (Copenhagen)
 
    o  DNSSEC Workshop at ICANN 56 (Helsinki)
@@ -381,18 +411,6 @@ Internet-Draft                     I-D                         July 2016
       acknowledgements.
 
 8.  References
-
-
-
-
-
-
-
-
-York, et al.             Expires January 7, 2017                [Page 7]
-
-Internet-Draft                     I-D                         July 2016
-
 
 8.1.  Normative References
 
@@ -425,6 +443,13 @@ Internet-Draft                     I-D                         July 2016
               10.17487/RFC6944, April 2013,
               <http://www.rfc-editor.org/info/rfc6944>.
 
+
+
+York, et al.             Expires January 7, 2017                [Page 8]
+
+Internet-Draft                     I-D                         July 2016
+
+
    [RFC6605]  Hoffman, P. and W. Wijngaards, "Elliptic Curve Digital
               Signature Algorithm (DSA) for DNSSEC", RFC 6605, DOI
               10.17487/RFC6605, April 2012,
@@ -442,13 +467,6 @@ Internet-Draft                     I-D                         July 2016
    [RFC3658]  Gudmundsson, O., "Delegation Signer (DS) Resource Record
               (RR)", RFC 3658, DOI 10.17487/RFC3658, December 2003,
               <http://www.rfc-editor.org/info/rfc3658>.
-
-
-
-York, et al.             Expires January 7, 2017                [Page 8]
-
-Internet-Draft                     I-D                         July 2016
-
 
    [RFC7696]  Housley, R., "Guidelines for Cryptographic Algorithm
               Agility and Selecting Mandatory-to-Implement Algorithms",
@@ -478,6 +496,16 @@ Authors' Addresses
    Email: york@isoc.org
 
 
+
+
+
+
+
+York, et al.             Expires January 7, 2017                [Page 9]
+
+Internet-Draft                     I-D                         July 2016
+
+
    Ondrej Sury
    CZ.NIC
 
@@ -501,4 +529,32 @@ Authors' Addresses
 
 
 
-York, et al.             Expires January 7, 2017                [Page 9]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+York, et al.             Expires January 7, 2017               [Page 10]

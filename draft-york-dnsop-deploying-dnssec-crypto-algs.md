@@ -80,6 +80,8 @@ are used throughout the DNS infrastructure for tasks such as:
 * Usage in a Delegation Signer (`DS`) record {{?RFC3658}} for the 
 "chain of trust" connecting back to the root of DNS
 
+* Generation of NSEC/NSEC3 responses by authoritative DNS servers
+
 * Validation of DNSSEC signatures by DNS resolvers
 
 In order for a new cryptographic algorithm to be fully deployed, 
@@ -183,12 +185,18 @@ reflect the existence of the new algorithm.
 
 Note that the key and signatures with the new algorithm will
 need to co-exist with the existing key and signatures for 
-some period of time, which would have some impact on the size
+some period of time. This will have an impact on the size
 of the DNS records. 
 
 [NOTE(OS): Shouldn't we just update the language that requires the
 resolver to be so strict and finally be done with this requirement?
 Or just give a recommendation in the paragraph on resolver here?]
+
+One issue that has been identified is that at least one of the 
+commonly-used signing software releases does not include any
+support for doing an algorithm roll.  This software would need
+to be updated to support rolling an algorithm before any new
+algorithms could be deployed.
 
 
 ## Registries
@@ -285,6 +293,21 @@ deployment of new cryptographic algorithms in DNSSEC at the time
 of this publication.  In order to more rapidly roll out new
 DNSSEC algorithms, these steps must be understood and hopefully
 improved over time.  
+
+It should be noted that a common theme to emerge from all discussions
+is a general reluctance to update or change any DNS-related 
+software.  "If it isn't broken, don't fix it" is a common refrain.
+While perhaps understandable from a stability point of view, 
+this attitude creates a challenge for deploying new algorithms.
+
+One potential idea suggested during discussions was for some kind
+of web-based testing tool that could assist people in understanding
+what algorithms are supported by different servers and sites.
+
+It is also quite clear that any deployment of new algorithms for 
+DNSSEC use will take a few years to propagate throughout the 
+infrastructure.  This needs to be factored in as new algorithms 
+are proposed.
 
 
 # IANA Considerations

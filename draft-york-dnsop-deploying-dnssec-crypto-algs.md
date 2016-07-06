@@ -1,8 +1,8 @@
 ---
 title: Observations on Deploying New DNSSEC Cryptographic Algorithms 
 abbrev: I-D
-docname: draft-york-dnsop-deploying-dnssec-crypto-algs-00
-date: 2016-03-21
+docname: draft-york-dnsop-deploying-dnssec-crypto-algs-01
+date: 2016-07-06
 category: info
 ipr: trust200902
 wg: DNSOP Working Group
@@ -160,12 +160,17 @@ until resolvers were updated to recognize the new algorithm.
 Authoritative DNS servers serve out signed DNS records.  Serving new
 DNSSEC signing algorithms should not be a problem as a well-written
 authoritative DNS server implementation should be agnostic to the RR
-DATA they serve.  Note that some authoritative server implementations 
-could include DNSSEC signing as part of the server and thus also fall 
-into the "Signing Software" category below.
+DATA they serve.  
 
-[NOTE(OS): Do we also address new NSEC/NSEC3 hashing algorithms?
-Because that would require update in the authoritative DNS server.]
+The one exception is if the new cryptographic algorithms are used in 
+the creation of NSEC/NSEC3 responses.  In the case of new NSEC/NSEC3 
+algorithms, the authoritative DNS server software would need to be
+updated to be able to use the new algorithms.
+
+Note that some authoritative server implementations could include 
+DNSSEC signing as part of the server and thus also fall into the 
+"Signing Software" category below.
+
 
 ## Signing Software
 
@@ -185,9 +190,6 @@ of the DNS records.
 resolver to be so strict and finally be done with this requirement?
 Or just give a recommendation in the paragraph on resolver here?]
 
-[NOTE(DY): I just noticed that "Signing software" or "Signers"
-does not exist in the "DNS Terminology draft at
-https://tools.ietf.org/html/rfc7719 ]
 
 ## Registries
 
@@ -241,7 +243,7 @@ software to be updated to support the new algorithm.
 Note that work is currently underway in {{?I-D.ietf-dnsop-maintain-ds}}
 to provide an automated mechanism to update the DS records
 with a registry.  If this method becomes widely adopted, 
-registrar web interfaces will no longer be needed.
+registrar web interfaces may no longer be needed.
 
 ## DNS Hosting Operators
 
@@ -301,7 +303,23 @@ and {{?RFC7583}}.
 
 The information in this document evolved out of several mailing 
 list discussions and also through engagement with participants 
-in the DNSSEC Workshop sessions at ICANN 53 (Buenos Aires) and 
-ICANN 55 (Marrakech).
+in the following sessions or events:
 
+* DNSSEC Workshop at ICANN 53 (Buenos Aires) 
+* DNSSEC Workshop at ICANN 55 (Marrakech) 
+* Spring 2016 DNS-OARC meeeting (Buenos Aires)
+* various IETF 95 working groups (Buenos Aires)
+* Panel session at RIPE 72 (Copenhagen)
+* DNSSEC Workshop at ICANN 56 (Helsinki)
+
+The authors thank the participants of the various sessions for
+their feedback.
+
+# Changes
+
+NOTE TO RFC EDITOR - Please remove this "Changes" section prior to 
+publication. Thank you.
+
+* Revision -01 adds text about authoritative servers needing an update
+if the algorithm is for NSEC/NSEC3. Also expands acknowledgements.
 

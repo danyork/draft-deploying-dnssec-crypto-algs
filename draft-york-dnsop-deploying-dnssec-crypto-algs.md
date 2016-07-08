@@ -192,11 +192,10 @@ of the DNS records.
 resolver to be so strict and finally be done with this requirement?
 Or just give a recommendation in the paragraph on resolver here?]
 
-One issue that has been identified is that at least one of the 
-commonly-used signing software releases does not include any
-support for doing an algorithm roll.  This software would need
-to be updated to support rolling an algorithm before any new
-algorithms could be deployed.
+One issue that has been identified is that not all commonly-used 
+signing software releases include support for an algorithm 
+rollover. This software would need to be updated to support 
+rolling an algorithm before any new algorithms could be deployed.
 
 
 ## Registries

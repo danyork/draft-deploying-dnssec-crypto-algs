@@ -1,7 +1,7 @@
 % Title = "Observations on Deploying New DNSSEC Cryptographic Algorithms"
 % abbrev = "Deploying New DNSSEC Crypto Algs"
 % category = "info"
-% docName = "draft-york-dnsop-deploying-dnssec-crypto-algs-02"
+% docName = "draft-york-dnsop-deploying-dnssec-crypto-algs-03"
 % ipr= "trust200902"
 % workgroup = "DNSOP"
 % area = "Ops"
@@ -163,10 +163,11 @@ not widely supported by DNS resolvers would result in the
 signatures being ignored and the zone treated as unsigned
 until resolvers were updated to recognize the new algorithm.
 
-Note that in at least one 2016 case (an ISP in Sweden) the resolver software
-deployed on customer premises turned out not to be compliant with 
-RFC 4035. Instead of ignoring the signatures using unknown algorithms
-and treating the zones as unsigned, the validating resolver rejected
+Note that in at least one 2016 case the resolver software
+deployed on customer premises by an Internet service provider (ISP)
+turned out not to be compliant with RFC 4035. Instead of ignoring 
+the signatures using unknown algorithms and treating the zones 
+as unsigned, the validating resolver rejected
 the signatures and returned a SERVFAIL to the DNS query. This 
 resulted in the ISP turning off DNSSEC validation on the equipment.
 Further investigation showed that a newer version of the resolver
@@ -363,6 +364,8 @@ their feedback.
 NOTE TO RFC EDITOR - Please remove this "Changes" section prior to 
 publication. Thank you.
 
+* Revision -03 removed the reference to the location of the ISP in
+the text added in version -02.
 * Revision -02 added text to the resolver section about an example
 where resolver software did not correctly follow RFC 4035 and treat
 packets with unknown algorithms as unsigned. The markdown source of

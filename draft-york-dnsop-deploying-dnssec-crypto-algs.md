@@ -1,41 +1,47 @@
----
-title: Observations on Deploying New DNSSEC Cryptographic Algorithms 
-abbrev: I-D
-docname: draft-york-dnsop-deploying-dnssec-crypto-algs-01
-date: 2016-07-06
-category: info
-ipr: trust200902
-wg: DNSOP Working Group
-area: Ops
+% Title = "Observations on Deploying New DNSSEC Cryptographic Algorithms"
+% abbrev = "Deploying New DNSSEC Crypto Algs"
+% category = "info"
+% docName = "draft-york-dnsop-deploying-dnssec-crypto-algs-02"
+% ipr= "trust200902"
+% workgroup = "DNSOP"
+% area = "Ops"
+%
+% date = 2016-10-31T00:00:00Z
+%
+% [[author]]
+% initials="D."
+% surname="York"
+% fullname="Dan York"
+% organization = "Internet Society"
+%  [author.address]
+%  email = "york@isoc.org"
+%
+% [[author]]
+% initials="O."
+% surname="Sury"
+% fullname="Ondrej Sury"
+% organization = "CZ.NIC"
+%  [author.address]
+%  email = "ondrej.sury@nic.cz"
+%
+% [[author]]
+% initials="P."
+% surname="Wouters"
+% fullname="Paul Wouters"
+% organization = "Red Hat"
+%  [author.address]
+%  email = "pwouters@redhat.com"
+%
+% [[author]]
+% initials="O."
+% surname="Gudmundsson"
+% fullname="Olafur Gudmundsson"
+% organization = "CloudFlare"
+%  [author.address]
+%  email = "olafur+ietf@cloudflare.com"
 
-author:
- -
-    ins: D. York
-    name: Dan York
-    org: Internet Society
-    email: york@isoc.org
- -
-    ins: O. Sury
-    name: Ondrej Sury
-    org: CZ.NIC
-    email: ondrej.sury@nic.cz
- -
-    ins: P. Wouters
-    name: Paul Wouters
-    org: Red Hat
-    email: pwouters@redhat.com
- -
-    ins: O. Gudmundsson
-    name: Olafur Gudmundsson
-    org: CloudFlare
-    email: olafur+ietf@cloudflare.com
 
-normative:
-  RFC2119:
-
-informative:
-
---- abstract
+.# Abstract
 
 As new cryptographic algorithms are developed for use in DNSSEC 
 signing and validation, this document captures the steps needed 
@@ -44,7 +50,7 @@ intent is to ensure a common understanding of the typical deployment
 process and potentially identify opportunities for improvement of 
 operations.
 
---- middle
+{mainmatter}
 
 # Introduction
 
@@ -156,6 +162,19 @@ This means that signing a zone with a new algorithm that is
 not widely supported by DNS resolvers would result in the 
 signatures being ignored and the zone treated as unsigned
 until resolvers were updated to recognize the new algorithm.
+
+Note that in at least one 2016 case (an ISP in Sweden) the resolver software
+deployed on customer premises turned out not to be compliant with 
+RFC 4035. Instead of ignoring the signatures using unknown algorithms
+and treating the zones as unsigned, the validating resolver rejected
+the signatures and returned a SERVFAIL to the DNS query. This 
+resulted in the ISP turning off DNSSEC validation on the equipment.
+Further investigation showed that a newer version of the resolver
+software did correctly support ECDSA, but now all customer premises
+equipment must be updated to this new version.
+
+The point is that it is not safe to assume all resolver software
+will correctly implement this part of RFC 4035.
 
 ## Authoritative DNS Servers
 
@@ -321,6 +340,8 @@ It should be noted that there are security considerations regarding
 changing DNSSEC algorithms that are mentioned in both {{?RFC6781}}
 and {{?RFC7583}}.
 
+{backmatter}
+
 # Acknowledgements
 
 The information in this document evolved out of several mailing 
@@ -342,6 +363,11 @@ their feedback.
 NOTE TO RFC EDITOR - Please remove this "Changes" section prior to 
 publication. Thank you.
 
+* Revision -02 added text to the resolver section about an example
+where resolver software did not correctly follow RFC 4035 and treat
+packets with unknown algorithms as unsigned. The markdown source of
+this I-D was also migrated to the markdown syntax favored by the
+'mmark' tool.
 * Revision -01 adds text about authoritative servers needing an update
 if the algorithm is for NSEC/NSEC3. Also expands acknowledgements.
 

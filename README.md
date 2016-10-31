@@ -8,18 +8,19 @@ or
 
 https://tools.ietf.org/html/draft-york-dnsop-deploying-dnssec-crypto-algs
 
-This repo contains the most recent version of the text, which may be newer than
-what was last submitted.
+This Internet-Draft is built using the `mmark` tool created by Miek Giebben and the Docker container created by Paul E. Jones to make using `mmark` and `xml2rfc` much easier.
 
-The draft was developed in Markdown using Richard Barnes' `draftr-js` tool available at:
+If you have Paul Jones `rfctools` Docker container installed all you should have to do is type:
 
-https://github.com/draftr-js/draftr-js.github.io
+`make`
 
-and in a hosted form at: https://draftr-js.github.io/
+and both the necessary XML and TXT files will be generated.
 
-It uses Carsten Bormann's `kramdown-rfc2629` found at:
+Paul's Docker image can be found at:
 
-https://github.com/cabo/kramdown-rfc2629
+https://hub.docker.com/r/paulej/rfctools/
 
-If you are interested in helping improve these tools, Richard is very open
-to code contributions as Pull Requests.
+and more information can be found at:
+
+https://github.com/paulej/rfctools
+https://github.com/miekg/mmark

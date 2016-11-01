@@ -1,12 +1,12 @@
 % Title = "Observations on Deploying New DNSSEC Cryptographic Algorithms"
 % abbrev = "Deploying New DNSSEC Crypto Algs"
 % category = "info"
-% docName = "draft-york-dnsop-deploying-dnssec-crypto-algs-03"
+% docName = "draft-york-dnsop-deploying-dnssec-crypto-algs-04"
 % ipr= "trust200902"
 % workgroup = "DNSOP"
 % area = "Ops"
 %
-% date = 2016-10-31T00:00:00Z
+% date = 2016-11-01T00:00:00Z
 %
 % [[author]]
 % initials="D."
@@ -54,8 +54,8 @@ operations.
 
 # Introduction
 
-The DNS Security Extensions (DNSSEC), broadly defined in {{?RFC4033}},
- {{?RFC4034}} and {{?RFC4035}}, make use of cryptographic algorithms 
+The DNS Security Extensions (DNSSEC), broadly defined in [@!RFC4033],
+ [@!RFC4034] and [@!RFC4035], make use of cryptographic algorithms 
 in both the signing of DNS records and the validation of DNSSEC 
 signatures by recursive resolvers.
 
@@ -63,17 +63,17 @@ The current list of cryptographic algorithms can be found in the IANA
 "Domain Name System Security (DNSSEC) Algorithm Numbers" registry 
 located at http://www.iana.org/assignments/dns-sec-alg-numbers/ 
 Algorithms are added to this IANA registry through a process defined 
-in {{?RFC6014}}.  Note that {{?RFC6944}} provides some guidance as 
+in [@?RFC6014].  Note that [@?RFC6944] provides some guidance as 
 to which of these algorithms should be implemented and supported.
 
 Historically DNSSEC signatures have primarily used cryptographic 
 algorithms based on RSA keys. As deployment of DNSSEC has 
 increased there has been interest in using newer and more secure 
 algorithms, particularly those using elliptic curve cryptography.  
-The ECDSA algorithm {{?RFC6605}} has seen some adoption and two 
-new algorithms are being proposed: Ed25519 
-{{?I-D.ietf-curdle-dnskey-ed25519}} and Ed448 
-{{?I-D.ietf-curdle-dnskey-ed448}}.
+The ECDSA algorithm [@?RFC6605] has seen some adoption and a new
+signing algorithm has been proposed: Edwards-curve Digital Signature 
+Algorithm (EdDSA) using a choice of two curves, Ed25519 and Ed448,  
+[@?I-D.ietf-curdle-dnskey-eddsa].
 
 The challenge is that the deployment of a new cryptographic 
 algorithm for DNSSEC is not a simple process. DNSSEC algorithms 
@@ -100,7 +100,7 @@ cryptographic algorithm.
 
 It should be noted that DNSSEC is not alone in complexity of 
 deployment.  The IAB documented "Guidelines for Cryptographic 
-Algorithm Agility" in {{?RFC7696}} to highlight the importance 
+Algorithm Agility" in [?!RFC7696] to highlight the importance 
 of this issue.
 
 ## Terminology
@@ -108,7 +108,7 @@ of this issue.
 In this document, the key words "MUST", "MUST NOT", "REQUIRED",
 "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY",
 and "OPTIONAL" are to be interpreted as described in BCP 14, RFC 2119
-{{RFC2119}}.
+[@!RFC2119].
 
 # Aspects of Deploying New Algorithms
 
@@ -150,7 +150,7 @@ have any mechanism for automatic updating.
 
 ### Resolvers and Unknown Algorithms
 
-It should be noted that section 5.2 of {{?RFC4035}} states:
+It should be noted that section 5.2 of [@!RFC4035] states:
 
 “If the resolver does not support any of the algorithms listed 
 in an authenticated DS RRset, then the resolver will not be 
@@ -267,7 +267,7 @@ verification, the registrar's software needs to understand
 the algorithm used in the DS record.  This requires the 
 software to be updated to support the new algorithm.
 
-Note that work is currently underway in {{?I-D.ietf-dnsop-maintain-ds}}
+Note that work is currently underway in [@?I-D.ietf-dnsop-maintain-ds]
 to provide an automated mechanism to update the DS records
 with a registry.  If this method becomes widely adopted, 
 registrar web interfaces may no longer be needed.
@@ -338,8 +338,8 @@ This document does not make any requests of IANA.
 No new security considerations are created by this document.
 
 It should be noted that there are security considerations regarding
-changing DNSSEC algorithms that are mentioned in both {{?RFC6781}}
-and {{?RFC7583}}.
+changing DNSSEC algorithms that are mentioned in both [@?RFC6781]
+and [@?RFC7583].
 
 {backmatter}
 
@@ -364,6 +364,7 @@ their feedback.
 NOTE TO RFC EDITOR - Please remove this "Changes" section prior to 
 publication. Thank you.
 
+* Revision -04 corrected the references which did not appear in -03 due to an error in the markdown source.
 * Revision -03 removed the reference to the location of the ISP in
 the text added in version -02.
 * Revision -02 added text to the resolver section about an example

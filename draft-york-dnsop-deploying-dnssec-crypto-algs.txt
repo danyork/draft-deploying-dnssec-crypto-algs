@@ -5,12 +5,12 @@
 DNSOP                                                            D. York
 Internet-Draft                                          Internet Society
 Intended status: Informational                                   O. Sury
-Expires: May 5, 2017                                              CZ.NIC
+Expires: May 18, 2017                                             CZ.NIC
                                                               P. Wouters
                                                                  Red Hat
                                                           O. Gudmundsson
                                                               CloudFlare
-                                                        November 1, 2016
+                                                       November 14, 2016
 
 
      Observations on Deploying New DNSSEC Cryptographic Algorithms
@@ -39,7 +39,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on May 5, 2017.
+   This Internet-Draft will expire on May 18, 2017.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-York, et al.               Expires May 5, 2017                  [Page 1]
+York, et al.              Expires May 18, 2017                  [Page 1]
 
 Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-York, et al.               Expires May 5, 2017                  [Page 2]
+York, et al.              Expires May 18, 2017                  [Page 2]
 
 Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
@@ -165,7 +165,7 @@ Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
 
 
-York, et al.               Expires May 5, 2017                  [Page 3]
+York, et al.              Expires May 18, 2017                  [Page 3]
 
 Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
@@ -221,7 +221,7 @@ Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
 
 
-York, et al.               Expires May 5, 2017                  [Page 4]
+York, et al.              Expires May 18, 2017                  [Page 4]
 
 Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
@@ -277,7 +277,7 @@ Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
 
 
-York, et al.               Expires May 5, 2017                  [Page 5]
+York, et al.              Expires May 18, 2017                  [Page 5]
 
 Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
@@ -333,7 +333,7 @@ Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
 
 
-York, et al.               Expires May 5, 2017                  [Page 6]
+York, et al.              Expires May 18, 2017                  [Page 6]
 
 Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
@@ -389,7 +389,7 @@ Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
 
 
-York, et al.               Expires May 5, 2017                  [Page 7]
+York, et al.              Expires May 18, 2017                  [Page 7]
 
 Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
@@ -445,7 +445,7 @@ Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
 
 
-York, et al.               Expires May 5, 2017                  [Page 8]
+York, et al.              Expires May 18, 2017                  [Page 8]
 
 Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
@@ -501,7 +501,7 @@ Appendix A.  Acknowledgements
 
 
 
-York, et al.               Expires May 5, 2017                  [Page 9]
+York, et al.              Expires May 18, 2017                  [Page 9]
 
 Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
@@ -557,7 +557,7 @@ Authors' Addresses
 
 
 
-York, et al.               Expires May 5, 2017                 [Page 10]
+York, et al.              Expires May 18, 2017                 [Page 10]
 
 Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
@@ -613,4 +613,4 @@ Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
 
 
-York, et al.               Expires May 5, 2017                 [Page 11]
+York, et al.              Expires May 18, 2017                 [Page 11]

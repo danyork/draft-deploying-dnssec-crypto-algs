@@ -5,16 +5,16 @@
 DNSOP                                                            D. York
 Internet-Draft                                          Internet Society
 Intended status: Informational                                   O. Sury
-Expires: May 18, 2017                                             CZ.NIC
+Expires: May 21, 2017                                             CZ.NIC
                                                               P. Wouters
                                                                  Red Hat
                                                           O. Gudmundsson
                                                               CloudFlare
-                                                       November 14, 2016
+                                                       November 17, 2016
 
 
      Observations on Deploying New DNSSEC Cryptographic Algorithms
-            draft-york-dnsop-deploying-dnssec-crypto-algs-04
+            draft-york-dnsop-deploying-dnssec-crypto-algs-05
 
 Abstract
 
@@ -39,7 +39,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on May 18, 2017.
+   This Internet-Draft will expire on May 21, 2017.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-York, et al.              Expires May 18, 2017                  [Page 1]
+York, et al.              Expires May 21, 2017                  [Page 1]
 
 Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
@@ -83,9 +83,9 @@ Table of Contents
    6.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   8
      6.1.  Normative References  . . . . . . . . . . . . . . . . . .   8
      6.2.  Informative References  . . . . . . . . . . . . . . . . .   9
-   Appendix A.  Acknowledgements . . . . . . . . . . . . . . . . . .   9
+   Appendix A.  Acknowledgements . . . . . . . . . . . . . . . . . .  10
    Appendix B.  Changes  . . . . . . . . . . . . . . . . . . . . . .  10
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  10
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  11
 
 1.  Introduction
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-York, et al.              Expires May 18, 2017                  [Page 2]
+York, et al.              Expires May 21, 2017                  [Page 2]
 
 Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
@@ -127,7 +127,7 @@ Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
    o  Creation of DNSSEC signatures in zone files ("RRSIG")
 
-   o  Usage in a Delegation Signer ("DS") record {{?RFC3658}} for the
+   o  Usage in a Delegation Signer ("DS") record [RFC3658] for the
       "chain of trust" connecting back to the root of DNS
 
    o  Generation of NSEC/NSEC3 responses by authoritative DNS servers
@@ -144,7 +144,7 @@ Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
    It should be noted that DNSSEC is not alone in complexity of
    deployment.  The IAB documented "Guidelines for Cryptographic
-   Algorithm Agility" in [?!RFC7696] to highlight the importance of this
+   Algorithm Agility" in [RFC7696] to highlight the importance of this
    issue.
 
 1.1.  Terminology
@@ -165,7 +165,7 @@ Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
 
 
-York, et al.              Expires May 18, 2017                  [Page 3]
+York, et al.              Expires May 21, 2017                  [Page 3]
 
 Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
@@ -221,7 +221,7 @@ Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
 
 
-York, et al.              Expires May 18, 2017                  [Page 4]
+York, et al.              Expires May 21, 2017                  [Page 4]
 
 Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
@@ -277,7 +277,7 @@ Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
 
 
-York, et al.              Expires May 18, 2017                  [Page 5]
+York, et al.              Expires May 21, 2017                  [Page 5]
 
 Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
@@ -333,7 +333,7 @@ Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
 
 
-York, et al.              Expires May 18, 2017                  [Page 6]
+York, et al.              Expires May 21, 2017                  [Page 6]
 
 Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
@@ -389,7 +389,7 @@ Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
 
 
-York, et al.              Expires May 18, 2017                  [Page 7]
+York, et al.              Expires May 21, 2017                  [Page 7]
 
 Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
@@ -445,7 +445,7 @@ Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
 
 
-York, et al.              Expires May 18, 2017                  [Page 8]
+York, et al.              Expires May 21, 2017                  [Page 8]
 
 Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
@@ -454,12 +454,16 @@ Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
    [I-D.ietf-curdle-dnskey-eddsa]
               Sury, O. and R. Edmonds, "EdDSA for DNSSEC", draft-ietf-
-              curdle-dnskey-eddsa-01 (work in progress), October 2016.
+              curdle-dnskey-eddsa-02 (work in progress), November 2016.
 
    [I-D.ietf-dnsop-maintain-ds]
               Gudmundsson, O. and P. Wouters, "Managing DS records from
               parent via CDS/CDNSKEY", draft-ietf-dnsop-maintain-ds-04
               (work in progress), October 2016.
+
+   [RFC3658]  Gudmundsson, O., "Delegation Signer (DS) Resource Record
+              (RR)", RFC 3658, DOI 10.17487/RFC3658, December 2003,
+              <http://www.rfc-editor.org/info/rfc3658>.
 
    [RFC6014]  Hoffman, P., "Cryptographic Algorithm Identifier
               Allocation for DNSSEC", RFC 6014, DOI 10.17487/RFC6014,
@@ -485,6 +489,23 @@ Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
               DOI 10.17487/RFC7583, October 2015,
               <http://www.rfc-editor.org/info/rfc7583>.
 
+   [RFC7696]  Housley, R., "Guidelines for Cryptographic Algorithm
+              Agility and Selecting Mandatory-to-Implement Algorithms",
+              BCP 201, RFC 7696, DOI 10.17487/RFC7696, November 2015,
+              <http://www.rfc-editor.org/info/rfc7696>.
+
+
+
+
+
+
+
+
+York, et al.              Expires May 21, 2017                  [Page 9]
+
+Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
+
+
 Appendix A.  Acknowledgements
 
    The information in this document evolved out of several mailing list
@@ -499,13 +520,6 @@ Appendix A.  Acknowledgements
 
    o  various IETF 95 working groups (Buenos Aires)
 
-
-
-York, et al.              Expires May 18, 2017                  [Page 9]
-
-Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
-
-
    o  Panel session at RIPE 72 (Copenhagen)
 
    o  DNSSEC Workshop at ICANN 56 (Helsinki)
@@ -517,6 +531,9 @@ Appendix B.  Changes
 
    NOTE TO RFC EDITOR - Please remove this "Changes" section prior to
    publication.  Thank you.
+
+   o  Revision -05 corrected typos around two other references that did
+      not appear in -04.
 
    o  Revision -04 corrected the references which did not appear in -03
       due to an error in the markdown source.
@@ -534,12 +551,24 @@ Appendix B.  Changes
       update if the algorithm is for NSEC/NSEC3.  Also expands
       acknowledgements.
 
+
+
+
+
+
+
+York, et al.              Expires May 21, 2017                 [Page 10]
+
+Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
+
+
 Authors' Addresses
 
    Dan York
    Internet Society
 
    Email: york@isoc.org
+   URI:   https://www.internetsociety.org/
 
 
    Ondrej Sury
@@ -552,14 +581,6 @@ Authors' Addresses
    Red Hat
 
    Email: pwouters@redhat.com
-
-
-
-
-
-York, et al.              Expires May 18, 2017                 [Page 10]
-
-Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
 
    Olafur Gudmundsson
@@ -592,25 +613,4 @@ Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-York, et al.              Expires May 18, 2017                 [Page 11]
+York, et al.              Expires May 21, 2017                 [Page 11]

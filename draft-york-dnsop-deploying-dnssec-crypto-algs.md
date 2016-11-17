@@ -1,12 +1,12 @@
 % Title = "Observations on Deploying New DNSSEC Cryptographic Algorithms"
 % abbrev = "Deploying New DNSSEC Crypto Algs"
 % category = "info"
-% docName = "draft-york-dnsop-deploying-dnssec-crypto-algs-04"
+% docName = "draft-york-dnsop-deploying-dnssec-crypto-algs-05"
 % ipr= "trust200902"
 % workgroup = "DNSOP"
 % area = "Ops"
 %
-% date = 2016-11-14T00:00:00Z
+% date = 2016-11-17T00:00:00Z
 %
 % [[author]]
 % initials="D."
@@ -15,6 +15,7 @@
 % organization = "Internet Society"
 %  [author.address]
 %  email = "york@isoc.org"
+%  uri = "https://www.internetsociety.org/"
 %
 % [[author]]
 % initials="O."
@@ -83,7 +84,7 @@ are used throughout the DNS infrastructure for tasks such as:
 
 * Creation of DNSSEC signatures in zone files (`RRSIG`)
 
-* Usage in a Delegation Signer (`DS`) record {{?RFC3658}} for the 
+* Usage in a Delegation Signer (`DS`) record [@?RFC3658] for the 
 "chain of trust" connecting back to the root of DNS
 
 * Generation of NSEC/NSEC3 responses by authoritative DNS servers
@@ -100,7 +101,7 @@ cryptographic algorithm.
 
 It should be noted that DNSSEC is not alone in complexity of 
 deployment.  The IAB documented "Guidelines for Cryptographic 
-Algorithm Agility" in [?!RFC7696] to highlight the importance 
+Algorithm Agility" in [@?RFC7696] to highlight the importance 
 of this issue.
 
 ## Terminology
@@ -364,6 +365,8 @@ their feedback.
 NOTE TO RFC EDITOR - Please remove this "Changes" section prior to 
 publication. Thank you.
 
+* Revision -05 corrected typos around two other references that did 
+not appear in -04.
 * Revision -04 corrected the references which did not appear in -03 due to an error in the markdown source.
 * Revision -03 removed the reference to the location of the ISP in
 the text added in version -02.

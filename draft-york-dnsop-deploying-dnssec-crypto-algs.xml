@@ -259,6 +259,65 @@ signing software releases include support for an algorithm
 rollover. This software would need to be updated to support
 rolling an algorithm before any new algorithms could be deployed.
 </t>
+<section anchor="signing-nsec3" title="NSEC3 iterations">
+<t>Implementation experience has shown that the <xref target='RFC5155'/>
+NSEC3 iteration count limits are poorly understood and are fragile
+in the context of adoption of EC-based algorithms.
+</t>
+<t>A simple design would have constrained the iteration count only
+by the bit width of the iteration count field (perhaps 12 bits for
+up 4096 iterations), with all representable values supported by
+both signers and resolvers.  Instead, the iteration count limit was
+made dependent on key size.  When the original text of Section 10.3
+of <xref target='RFC5155'/> was written, the only extant DNSSEC key
+algorithms were RSA and DSA.  These had similar key sizes with
+comparable security, with DSA slower than RSA.  A decision was made
+to specify iteration count limits roughly commensurate with the
+cost of RSA operations for a given key size, and to use the same
+limits for both RSA and DSA.  The essential features of the
+specification are:
+</t>
+<figure>
+<artwork>
+   The limits, therefore, are based on the size of the smallest
+   zone signing key, rounded up to the nearest table value (or
+   rounded down if the key is larger than the largest table
+   value).
+   ...
+   Therefore the values in the table MUST be used independent of
+   the key algorithm.
+<figure>
+<artwork>
+<t>While the specified key-size-dependent limits made some sense
+for both RSA and DSA, they map poorly to elliptic-curve-based (EC)
+DNSSEC algorithms, which only use keys shorter than 1024 bits.
+Nevertheless, popular resolvers (BIND, unbound, etc.) apply the
+specified table of limits to EC algorithms, and so zones with EC
+keys need to cap their NSEC3 iteration counts at 150.
+</t>
+<t>This requirement is surprising to some operators migrating from
+RSA to EC keys.  They continue to use iteration counts that work
+for RSA-2048, but which exceed the 150 limit for the smaller EC
+keys.  This renders denial-of-existence "Insecure" for the zones
+in question.
+</t>
+<t>
+Some signer implementations allow maximums that are higher than the
+specified key-size-dependent limits, resulting again in resolvers
+possibly returning these answers as "Insecure".
+</t>
+<t>To avoid surprises, such as downgrade attacks against "SMTP
+Security via Opportunistic DANE TLS" <xref target='RFC7672'/>,
+DNSSEC signers SHOULD not use an iteration count higher than 150:
+such iteration counts are prone to fail when configuration changes
+introduce new algorithms.
+</t>
+<t>
+Similarly, resolvers SHOULD NOT support configurations with iteration
+count limits below 150, as lower limits may lead to insecure
+denial of existence, even for compliant zones.
+</t>
+</section>
 </section>
 
 <section anchor="registries" title="Registries">
@@ -438,7 +497,7 @@ publication. Thank you.
 <t>
 <list style="symbols">
 <t>Revision -05 corrected typos around two other references that did
-not appear in -04.</t>
+not appear in -04. Added note on NSEC3 iteration count</t>
 <t>Revision -04 corrected the references which did not appear in -03 due to an error in the markdown source.</t>
 <t>Revision -03 removed the reference to the location of the ISP in
 the text added in version -02.</t>

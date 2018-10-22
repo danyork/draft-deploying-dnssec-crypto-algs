@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE rfc SYSTEM 'rfc2629.dtd' []>
-<rfc ipr="trust200902" category="info" docName="draft-york-dnsop-deploying-dnssec-crypto-algs-05">
+<rfc ipr="trust200902" category="info" docName="draft-york-dnsop-deploying-dnssec-crypto-algs-06">
 <?rfc toc="yes"?>
 <?rfc symrefs="yes"?>
 <?rfc sortrefs="yes"?>
@@ -28,7 +28,7 @@
 </address>
 </author>
 <author initials="O." surname="Sury" fullname="Ondrej Sury">
-<organization>CZ.NIC</organization>
+<organization>ISC</organization>
 <address>
 <postal>
 <street></street>
@@ -38,7 +38,7 @@
 <region></region>
 </postal>
 <phone></phone>
-<email>ondrej.sury@nic.cz</email>
+<email>ondrej@isc.org</email>
 <uri></uri>
 </address>
 </author>
@@ -72,7 +72,7 @@
 <uri></uri>
 </address>
 </author>
-<date year="2016" month="November" day="17"/>
+<date year="2018" month="October" day="21"/>
 
 <area>Ops</area>
 <workgroup>DNSOP</workgroup>
@@ -112,10 +112,10 @@ increased there has been interest in using newer and more secure
 algorithms, particularly those using elliptic curve cryptography.
 <vspace/>
 The ECDSA algorithm <xref target="RFC6605"/> has seen some adoption and a new
-signing algorithm has been proposed: Edwards-curve Digital Signature
+signing algorithm is now available: Edwards-curve Digital Signature
 Algorithm (EdDSA) using a choice of two curves, Ed25519 and Ed448,
 <vspace/>
-<xref target="I-D.ietf-curdle-dnskey-eddsa"/>.
+<xref target="RFC8080"/>.
 </t>
 <t>The challenge is that the deployment of a new cryptographic
 algorithm for DNSSEC is not a simple process. DNSSEC algorithms
@@ -250,15 +250,16 @@ need to co-exist with the existing key and signatures for
 some period of time. This will have an impact on the size
 of the DNS records.
 </t>
-<t>[NOTE(OS): Shouldn't we just update the language that requires the
-resolver to be so strict and finally be done with this requirement?
-Or just give a recommendation in the paragraph on resolver here?]
-</t>
 <t>One issue that has been identified is that not all commonly-used
 signing software releases include support for an algorithm
 rollover. This software would need to be updated to support
 rolling an algorithm before any new algorithms could be deployed.
 </t>
+
+<section anchor="nsec3-iterations" title="NSEC3 Iterations">
+<t>[additional text needed]
+</t>
+</section>
 </section>
 
 <section anchor="registries" title="Registries">
@@ -310,7 +311,7 @@ verification, the registrar's software needs to understand
 the algorithm used in the DS record.  This requires the
 software to be updated to support the new algorithm.
 </t>
-<t>Note that work is currently underway in <xref target="I-D.ietf-dnsop-maintain-ds"/>
+<t>Note that work has been standardized in <xref target="RFC8078"/>
 to provide an automated mechanism to update the DS records
 with a registry.  If this method becomes widely adopted,
 registrar web interfaces may no longer be needed.
@@ -400,8 +401,6 @@ and <xref target="RFC7583"/>.
 <?rfc include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4035.xml"?>
 </references>
 <references title="Informative References">
-<?rfc include="http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-curdle-dnskey-eddsa.xml"?>
-<?rfc include="http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-maintain-ds.xml"?>
 <?rfc include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3658.xml"?>
 <?rfc include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.6014.xml"?>
 <?rfc include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.6605.xml"?>
@@ -409,6 +408,8 @@ and <xref target="RFC7583"/>.
 <?rfc include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.6944.xml"?>
 <?rfc include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7583.xml"?>
 <?rfc include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7696.xml"?>
+<?rfc include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.8078.xml"?>
+<?rfc include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.8080.xml"?>
 </references>
 
 <section anchor="acknowledgements" title="Acknowledgements">
@@ -437,6 +438,8 @@ publication. Thank you.
 </t>
 <t>
 <list style="symbols">
+<t>Revision -06 added in references to RFCs 8080 and 8078 and updated
+Ondrej Sury's affiliation to ISC.</t>
 <t>Revision -05 corrected typos around two other references that did
 not appear in -04.</t>
 <t>Revision -04 corrected the references which did not appear in -03 due to an error in the markdown source.</t>

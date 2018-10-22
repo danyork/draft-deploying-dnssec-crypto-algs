@@ -1,12 +1,12 @@
 % Title = "Observations on Deploying New DNSSEC Cryptographic Algorithms"
 % abbrev = "Deploying New DNSSEC Crypto Algs"
 % category = "info"
-% docName = "draft-york-dnsop-deploying-dnssec-crypto-algs-05"
+% docName = "draft-york-dnsop-deploying-dnssec-crypto-algs-06"
 % ipr= "trust200902"
 % workgroup = "DNSOP"
 % area = "Ops"
 %
-% date = 2016-11-17T00:00:00Z
+% date = 2018-10-21T00:00:00Z
 %
 % [[author]]
 % initials="D."
@@ -21,9 +21,9 @@
 % initials="O."
 % surname="Sury"
 % fullname="Ondrej Sury"
-% organization = "CZ.NIC"
+% organization = "ISC"
 %  [author.address]
-%  email = "ondrej.sury@nic.cz"
+%  email = "ondrej@isc.org"
 %
 % [[author]]
 % initials="P."
@@ -72,9 +72,9 @@ algorithms based on RSA keys. As deployment of DNSSEC has
 increased there has been interest in using newer and more secure 
 algorithms, particularly those using elliptic curve cryptography.  
 The ECDSA algorithm [@?RFC6605] has seen some adoption and a new
-signing algorithm has been proposed: Edwards-curve Digital Signature 
+signing algorithm is now available: Edwards-curve Digital Signature 
 Algorithm (EdDSA) using a choice of two curves, Ed25519 and Ed448,  
-[@?I-D.ietf-curdle-dnskey-eddsa].
+[@?RFC8080].
 
 The challenge is that the deployment of a new cryptographic 
 algorithm for DNSSEC is not a simple process. DNSSEC algorithms 
@@ -209,15 +209,14 @@ need to co-exist with the existing key and signatures for
 some period of time. This will have an impact on the size
 of the DNS records. 
 
-[NOTE(OS): Shouldn't we just update the language that requires the
-resolver to be so strict and finally be done with this requirement?
-Or just give a recommendation in the paragraph on resolver here?]
-
 One issue that has been identified is that not all commonly-used 
 signing software releases include support for an algorithm 
 rollover. This software would need to be updated to support 
 rolling an algorithm before any new algorithms could be deployed.
 
+### NSEC3 Iterations
+
+[additional text needed]
 
 ## Registries
 
@@ -268,7 +267,7 @@ verification, the registrar's software needs to understand
 the algorithm used in the DS record.  This requires the 
 software to be updated to support the new algorithm.
 
-Note that work is currently underway in [@?I-D.ietf-dnsop-maintain-ds]
+Note that work has been standardized in [@?RFC8078]
 to provide an automated mechanism to update the DS records
 with a registry.  If this method becomes widely adopted, 
 registrar web interfaces may no longer be needed.
@@ -365,6 +364,8 @@ their feedback.
 NOTE TO RFC EDITOR - Please remove this "Changes" section prior to 
 publication. Thank you.
 
+* Revision -06 added in references to RFCs 8080 and 8078 and updated
+Ondrej Sury's affiliation to ISC.
 * Revision -05 corrected typos around two other references that did 
 not appear in -04.
 * Revision -04 corrected the references which did not appear in -03 due to an error in the markdown source.

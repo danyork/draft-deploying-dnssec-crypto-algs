@@ -5,16 +5,16 @@
 DNSOP                                                            D. York
 Internet-Draft                                          Internet Society
 Intended status: Informational                                   O. Sury
-Expires: May 21, 2017                                             CZ.NIC
+Expires: April 24, 2019                                              ISC
                                                               P. Wouters
                                                                  Red Hat
                                                           O. Gudmundsson
                                                               CloudFlare
-                                                       November 17, 2016
+                                                        October 21, 2018
 
 
      Observations on Deploying New DNSSEC Cryptographic Algorithms
-            draft-york-dnsop-deploying-dnssec-crypto-algs-05
+            draft-york-dnsop-deploying-dnssec-crypto-algs-06
 
 Abstract
 
@@ -39,11 +39,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on May 21, 2017.
+   This Internet-Draft will expire on April 24, 2019.
 
 Copyright Notice
 
-   Copyright (c) 2016 IETF Trust and the persons identified as the
+   Copyright (c) 2018 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-York, et al.              Expires May 21, 2017                  [Page 1]
+York, et al.             Expires April 24, 2019                 [Page 1]
 
-Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
+Internet-Draft      Deploying New DNSSEC Crypto Algs        October 2018
 
 
    carefully, as they describe your rights and restrictions with respect
@@ -73,6 +73,7 @@ Table of Contents
        2.1.1.  Resolvers and Unknown Algorithms  . . . . . . . . . .   4
      2.2.  Authoritative DNS Servers . . . . . . . . . . . . . . . .   5
      2.3.  Signing Software  . . . . . . . . . . . . . . . . . . . .   5
+       2.3.1.  NSEC3 Iterations  . . . . . . . . . . . . . . . . . .   5
      2.4.  Registries  . . . . . . . . . . . . . . . . . . . . . . .   6
      2.5.  Registrars  . . . . . . . . . . . . . . . . . . . . . . .   6
      2.6.  DNS Hosting Operators . . . . . . . . . . . . . . . . . .   7
@@ -108,16 +109,15 @@ Table of Contents
 
 
 
-
-York, et al.              Expires May 21, 2017                  [Page 2]
+York, et al.             Expires April 24, 2019                 [Page 2]
 
-Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
+Internet-Draft      Deploying New DNSSEC Crypto Algs        October 2018
 
 
    The ECDSA algorithm [RFC6605] has seen some adoption and a new
-   signing algorithm has been proposed: Edwards-curve Digital Signature
+   signing algorithm is now available: Edwards-curve Digital Signature
    Algorithm (EdDSA) using a choice of two curves, Ed25519 and Ed448,
-   [I-D.ietf-curdle-dnskey-eddsa].
+   [RFC8080].
 
    The challenge is that the deployment of a new cryptographic algorithm
    for DNSSEC is not a simple process.  DNSSEC algorithms are used
@@ -165,9 +165,9 @@ Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
 
 
-York, et al.              Expires May 21, 2017                  [Page 3]
+York, et al.             Expires April 24, 2019                 [Page 3]
 
-Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
+Internet-Draft      Deploying New DNSSEC Crypto Algs        October 2018
 
 
    o  Signing software
@@ -221,9 +221,9 @@ Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
 
 
-York, et al.              Expires May 21, 2017                  [Page 4]
+York, et al.             Expires April 24, 2019                 [Page 4]
 
-Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
+Internet-Draft      Deploying New DNSSEC Crypto Algs        October 2018
 
 
    turning off DNSSEC validation on the equipment.  Further
@@ -263,23 +263,23 @@ Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
    co-exist with the existing key and signatures for some period of
    time.  This will have an impact on the size of the DNS records.
 
-   [NOTE(OS): Shouldn't we just update the language that requires the
-   resolver to be so strict and finally be done with this requirement?
-   Or just give a recommendation in the paragraph on resolver here?]
-
    One issue that has been identified is that not all commonly-used
    signing software releases include support for an algorithm rollover.
    This software would need to be updated to support rolling an
    algorithm before any new algorithms could be deployed.
 
+2.3.1.  NSEC3 Iterations
+
+   [additional text needed]
 
 
 
 
 
-York, et al.              Expires May 21, 2017                  [Page 5]
+
+York, et al.             Expires April 24, 2019                 [Page 5]
 
-Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
+Internet-Draft      Deploying New DNSSEC Crypto Algs        October 2018
 
 
 2.4.  Registries
@@ -333,15 +333,15 @@ Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
 
 
-York, et al.              Expires May 21, 2017                  [Page 6]
+York, et al.             Expires April 24, 2019                 [Page 6]
 
-Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
+Internet-Draft      Deploying New DNSSEC Crypto Algs        October 2018
 
 
-   Note that work is currently underway in [I-D.ietf-dnsop-maintain-ds]
-   to provide an automated mechanism to update the DS records with a
-   registry.  If this method becomes widely adopted, registrar web
-   interfaces may no longer be needed.
+   Note that work has been standardized in [RFC8078] to provide an
+   automated mechanism to update the DS records with a registry.  If
+   this method becomes widely adopted, registrar web interfaces may no
+   longer be needed.
 
 2.6.  DNS Hosting Operators
 
@@ -389,9 +389,9 @@ Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
 
 
-York, et al.              Expires May 21, 2017                  [Page 7]
+York, et al.             Expires April 24, 2019                 [Page 7]
 
-Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
+Internet-Draft      Deploying New DNSSEC Crypto Algs        October 2018
 
 
    perhaps understandable from a stability point of view, this attitude
@@ -424,75 +424,76 @@ Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
-              DOI 10.17487/RFC2119, March 1997,
-              <http://www.rfc-editor.org/info/rfc2119>.
+              DOI 10.17487/RFC2119, March 1997, <https://www.rfc-
+              editor.org/info/rfc2119>.
 
    [RFC4033]  Arends, R., Austein, R., Larson, M., Massey, D., and S.
               Rose, "DNS Security Introduction and Requirements",
               RFC 4033, DOI 10.17487/RFC4033, March 2005,
-              <http://www.rfc-editor.org/info/rfc4033>.
+              <https://www.rfc-editor.org/info/rfc4033>.
 
    [RFC4034]  Arends, R., Austein, R., Larson, M., Massey, D., and S.
               Rose, "Resource Records for the DNS Security Extensions",
               RFC 4034, DOI 10.17487/RFC4034, March 2005,
-              <http://www.rfc-editor.org/info/rfc4034>.
+              <https://www.rfc-editor.org/info/rfc4034>.
 
    [RFC4035]  Arends, R., Austein, R., Larson, M., Massey, D., and S.
               Rose, "Protocol Modifications for the DNS Security
               Extensions", RFC 4035, DOI 10.17487/RFC4035, March 2005,
-              <http://www.rfc-editor.org/info/rfc4035>.
+              <https://www.rfc-editor.org/info/rfc4035>.
 
 
 
 
-York, et al.              Expires May 21, 2017                  [Page 8]
+York, et al.             Expires April 24, 2019                 [Page 8]
 
-Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
+Internet-Draft      Deploying New DNSSEC Crypto Algs        October 2018
 
 
 6.2.  Informative References
 
-   [I-D.ietf-curdle-dnskey-eddsa]
-              Sury, O. and R. Edmonds, "EdDSA for DNSSEC", draft-ietf-
-              curdle-dnskey-eddsa-02 (work in progress), November 2016.
-
-   [I-D.ietf-dnsop-maintain-ds]
-              Gudmundsson, O. and P. Wouters, "Managing DS records from
-              parent via CDS/CDNSKEY", draft-ietf-dnsop-maintain-ds-04
-              (work in progress), October 2016.
-
    [RFC3658]  Gudmundsson, O., "Delegation Signer (DS) Resource Record
               (RR)", RFC 3658, DOI 10.17487/RFC3658, December 2003,
-              <http://www.rfc-editor.org/info/rfc3658>.
+              <https://www.rfc-editor.org/info/rfc3658>.
 
    [RFC6014]  Hoffman, P., "Cryptographic Algorithm Identifier
               Allocation for DNSSEC", RFC 6014, DOI 10.17487/RFC6014,
-              November 2010, <http://www.rfc-editor.org/info/rfc6014>.
+              November 2010, <https://www.rfc-editor.org/info/rfc6014>.
 
    [RFC6605]  Hoffman, P. and W. Wijngaards, "Elliptic Curve Digital
               Signature Algorithm (DSA) for DNSSEC", RFC 6605,
-              DOI 10.17487/RFC6605, April 2012,
-              <http://www.rfc-editor.org/info/rfc6605>.
+              DOI 10.17487/RFC6605, April 2012, <https://www.rfc-
+              editor.org/info/rfc6605>.
 
    [RFC6781]  Kolkman, O., Mekking, W., and R. Gieben, "DNSSEC
               Operational Practices, Version 2", RFC 6781,
-              DOI 10.17487/RFC6781, December 2012,
-              <http://www.rfc-editor.org/info/rfc6781>.
+              DOI 10.17487/RFC6781, December 2012, <https://www.rfc-
+              editor.org/info/rfc6781>.
 
    [RFC6944]  Rose, S., "Applicability Statement: DNS Security (DNSSEC)
               DNSKEY Algorithm Implementation Status", RFC 6944,
-              DOI 10.17487/RFC6944, April 2013,
-              <http://www.rfc-editor.org/info/rfc6944>.
+              DOI 10.17487/RFC6944, April 2013, <https://www.rfc-
+              editor.org/info/rfc6944>.
 
    [RFC7583]  Morris, S., Ihren, J., Dickinson, J., and W. Mekking,
               "DNSSEC Key Rollover Timing Considerations", RFC 7583,
-              DOI 10.17487/RFC7583, October 2015,
-              <http://www.rfc-editor.org/info/rfc7583>.
+              DOI 10.17487/RFC7583, October 2015, <https://www.rfc-
+              editor.org/info/rfc7583>.
 
    [RFC7696]  Housley, R., "Guidelines for Cryptographic Algorithm
               Agility and Selecting Mandatory-to-Implement Algorithms",
               BCP 201, RFC 7696, DOI 10.17487/RFC7696, November 2015,
-              <http://www.rfc-editor.org/info/rfc7696>.
+              <https://www.rfc-editor.org/info/rfc7696>.
+
+   [RFC8078]  Gudmundsson, O. and P. Wouters, "Managing DS Records from
+              the Parent via CDS/CDNSKEY", RFC 8078,
+              DOI 10.17487/RFC8078, March 2017, <https://www.rfc-
+              editor.org/info/rfc8078>.
+
+   [RFC8080]  Sury, O. and R. Edmonds, "Edwards-Curve Digital Security
+              Algorithm (EdDSA) for DNSSEC", RFC 8080,
+              DOI 10.17487/RFC8080, February 2017, <https://www.rfc-
+              editor.org/info/rfc8080>.
 
 
 
@@ -500,10 +501,9 @@ Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
 
 
 
-
-York, et al.              Expires May 21, 2017                  [Page 9]
+York, et al.             Expires April 24, 2019                 [Page 9]
 
-Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
+Internet-Draft      Deploying New DNSSEC Crypto Algs        October 2018
 
 
 Appendix A.  Acknowledgements
@@ -532,6 +532,9 @@ Appendix B.  Changes
    NOTE TO RFC EDITOR - Please remove this "Changes" section prior to
    publication.  Thank you.
 
+   o  Revision -06 added in references to RFCs 8080 and 8078 and updated
+      Ondrej Sury's affiliation to ISC.
+
    o  Revision -05 corrected typos around two other references that did
       not appear in -04.
 
@@ -554,12 +557,9 @@ Appendix B.  Changes
 
 
 
-
-
-
-York, et al.              Expires May 21, 2017                 [Page 10]
+York, et al.             Expires April 24, 2019                [Page 10]
 
-Internet-Draft      Deploying New DNSSEC Crypto Algs       November 2016
+Internet-Draft      Deploying New DNSSEC Crypto Algs        October 2018
 
 
 Authors' Addresses
@@ -572,9 +572,9 @@ Authors' Addresses
 
 
    Ondrej Sury
-   CZ.NIC
+   ISC
 
-   Email: ondrej.sury@nic.cz
+   Email: ondrej@isc.org
 
 
    Paul Wouters
@@ -613,4 +613,4 @@ Authors' Addresses
 
 
 
-York, et al.              Expires May 21, 2017                 [Page 11]
+York, et al.             Expires April 24, 2019                [Page 11]
